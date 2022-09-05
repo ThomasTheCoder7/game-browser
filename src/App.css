@@ -1,0 +1,274 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+::-webkit-scrollbar {
+     width: 10px;
+   }
+   
+   /* Track */
+   ::-webkit-scrollbar-track {
+     background: #dfe0df; 
+   }
+    
+   /* Handle */
+   ::-webkit-scrollbar-thumb {
+     background: rgb(70, 70, 70); 
+     transition: background 0.5s;
+   }
+   
+   /* Handle on hover */
+   ::-webkit-scrollbar-thumb:hover {
+     background: rgb(90, 90, 90); 
+   }
+
+   .hero-container{
+    position: relative;
+    z-index: 100;
+    
+   }
+   .hero-text{
+    position: relative;
+    z-index: 200;
+   }
+   .hero-backdrop{
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+   }
+
+   .card-body{
+   height: 45vh;
+   }
+   .card-img{ 
+    
+    min-height: 15vh;
+    max-height: 30vh;
+    border-radius: 0;
+    
+   }
+   
+   .card-title-txt{
+    font-weight: bolder;
+    
+   }
+
+   .card-text{
+    line-height: 170%;
+    /* font-size:0.9em !important; */
+    font-weight: 600;
+    color: rgb(27, 27, 27) !important;
+   }
+
+   @media screen and (max-width:1200px){
+    .card-img{
+      min-height: 25vh;
+    }
+    .card-body{
+      height: 55vh;
+      }
+   
+   }
+
+   
+
+
+
+  .JModal,.JCarouselModal{
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+   }
+
+  
+   .JCarousel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 80%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 500;
+   }
+   .JCarouselModal{
+    
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    z-index: 400;
+    display: flex;
+    flex-direction: column;
+    
+    
+    
+
+   
+   }
+
+   .exitBtn{
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 3%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    
+    
+   }
+   .SwiperParent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+   .images>.SwiperParent{
+    display: flex; 
+   }
+   .lgScreenshot{
+
+    width: 80vw;
+    height: 80vh;
+    background-size: contain;
+    background-repeat:no-repeat;
+    background-position: center;
+   }
+   .smScreenshot{
+    width: 100vw;
+    height: 100vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: opacity 0.5s;
+   }
+
+   .images{
+    display: flex;
+    height: 10%;
+    background-color: black;
+    width: 70vw;
+    margin-top: 1%;
+  }
+
+  .images>.screenshot{
+    margin: 0 1%;
+    width: 10%;
+    border: 10px solid black;
+    
+    
+    
+  }
+
+
+
+
+
+
+   .screenshot{
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: opacity 0.5s;
+   }
+
+   .screenshot:hover{
+    opacity: 0.8;
+   }
+
+   .screenshotContainer{
+    width: 25%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    gap:0;
+   }
+   
+   .b-sc{
+    background-color: rgba(0, 0, 0, 0.199) !important;
+    
+    font-weight: 600;
+    transition: color 0.5s,background-color 0.5s;
+   }
+
+   .b-sc:hover{
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    color:aqua !important;
+    
+   }
+
+   .iframeContainer{
+    width: 25%;
+    height: 25vh;
+   }
+   .iframeContainer>iframe{
+    width: 100%;
+    height: 100%;
+   }
+  
+   @media screen and (max-width:1200px) {
+    .screenshotContainer{
+      width: 35%;
+    }
+
+    .iframeContainer{
+      width: 35%;
+      height: 35vh;
+     }
+   }
+
+   @media screen and (max-width:1000px) {
+    .screenshotContainer{
+      width: 50%;
+    }
+
+    .iframeContainer{
+      width: 45%;
+      height: 35vh;
+     }
+   }
+
+
+   @media screen and (max-width:768px) {
+    .screenshotContainer{
+      margin-top: 10%;
+      width: 100%;
+    }
+
+    .iframeContainer{
+      width: 100%;
+      height: 35vh;
+     }
+   }
+
+
+   @media screen and (max-width:400px) {
+    .screenshotContainer{
+      margin-top: 10%;
+      width: 100%;
+    }
+
+    
+    
+
+    .iframeContainer{
+      width: 100%;
+      height: 20vh;
+     }
+
+
+    
+   }
