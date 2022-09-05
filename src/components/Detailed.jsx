@@ -10,14 +10,36 @@ import Carousel from './Carousel'
 
 
 
+
+
+
+
+
 const Detailed = ({res,setHideNav,setResults}) => {
+
+
+ 
+
+     
      const { id } = useParams();
      const { k } = useParams();
      const [loading, setloading] = useState([])
      const [details, setDetails] = useState({})
-     const result = res[k];
+     let result = res[k];
      const [scMoadal, setScModal] = useState(false);
+
+
+
+
      
+     function FetchData(){
+          fetch(`https://api.rawg.io/api/games?key=39a9a8f059eb4e2d9df768186807dcf9&search_exact=${id}`)
+          .then(response => response.json())
+          .then(data => {
+          setResults(data.results);
+          result = res[k];
+          })
+     }
      
      
      useEffect(() => {
@@ -26,21 +48,18 @@ const Detailed = ({res,setHideNav,setResults}) => {
                .then(data => {
                     setDetails(data);
                     setloading(false);
-                    window.sessionStorage.setItem("sc",res[k].short_screenshots)
+                  
                })
      }, [id])
-
-     
-     useEffect(() => {
-
-          setResults(JSON.parse(window.sessionStorage.getItem("sc")));
-     },[])
      
      
      function render() {
-           
+         
           
           if (result == undefined) { return}
+          if(result.slug != id) FetchData();
+          
+          
           if (loading) { return <Hero text={<LoadingSpinner />} /> }               
           return (
                <>
@@ -50,7 +69,7 @@ const Detailed = ({res,setHideNav,setResults}) => {
 
                     <div className='d-md-flex justify-content-md-between justify-content-center align-items-center flex-md-row flex-column m-3'>
                     
-               <div className='iframeContainer'>
+                         <div className='iframeContainer'>
                     
                     
                     <iframe className='' src={`https://www.youtube.com/embed/${"dQw4w9WgXcQ"}`}/>
