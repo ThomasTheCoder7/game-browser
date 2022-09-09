@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     
     
-      console.log("REQUEST MAIN")
+      
       
     fetch(`https://api.rawg.io/api/games?key=${key}&search=${searchText}`)
       
@@ -36,7 +36,7 @@ function App() {
           setResults(data.results);
           
           setLoading(false);
-          console.log(searchResults)
+          
 
           
           

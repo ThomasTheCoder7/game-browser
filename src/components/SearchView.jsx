@@ -49,7 +49,7 @@ function getPlatforms(p) {
           14:  <i class="bi bi-browser-chrome mx-1"></i>
      }
     
-     if (p == undefined) { console.log(p); return}
+     if (p == undefined) { return; }
     
      return (
           <div>
@@ -111,7 +111,6 @@ const SearchView = ({ keyword, searchResult,loading,setLoading,setSc}) => {
      if (loading) return <Hero text={<LoadingSpinner />} />
      
      
-     console.log(searchResult)
      if (keyword.length == 0) { 
         
      }

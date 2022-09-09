@@ -77,7 +77,7 @@ const Detailed = ({ setHideNav, screenshots, loading, setLoading, setSc}) => {
                
           
           
-               console.log("Requested Details")
+               
                     
      }, [id])
      
