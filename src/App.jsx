@@ -61,7 +61,7 @@ function App() {
         setSc={setSc}
         />} />
         <Route path="/game/:id" element={<Detailed loading={isLoading} setLoading={setLoading} res={searchResults} setHideNav={setHideNav} setResults={setResults} screenshots={screenshots} setSc={setSc} />} />
-        
+        <Route path="/game-browser/" element={<Home/>} />
         <Route path='*' element={<PageNotFound/>} />
         </Routes>
       
