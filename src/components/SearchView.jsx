@@ -64,7 +64,7 @@ function getPlatforms(p) {
 
 
 const Card = ({game,setLoading,setSc}) => {
-     const detailsUrl = `/game/${game.slug}`
+     const detailsUrl = `/game-browser/game/${game.slug}`
 
      return (
           <div className='col-lg-3 col-md-4 col-sm-12  my-1'>
