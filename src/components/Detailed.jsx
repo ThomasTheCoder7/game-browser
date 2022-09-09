@@ -15,56 +15,87 @@ import Carousel from './Carousel'
 
 
 
-const Detailed = ({res,setHideNav,setResults}) => {
-
-
- 
-
+const Detailed = ({ setHideNav, screenshots, loading, setLoading, setSc}) => {
      
      const { id } = useParams();
-     const { k } = useParams();
-     const [loading, setloading] = useState([])
-     const [details, setDetails] = useState({})
-     let result = res[k];
+     const key = "53f7c1ee5b2449dc8379de8da8db4d18";
+     const [details, setDetails] = useState({});
      const [scMoadal, setScModal] = useState(false);
+     const tempSc = [
+          { "id": -1, "image": "https://media.rawg.io/media/games/b4e/b4e4c73d5aa4ec66bbf75375c4847a2b.jpg" },
+          { "id":  
+          565530, "image": 
+          "https://media.rawg.io/media/screenshots/324/32454b11adde40d87c046f310f0d710d.jpg" },
+         { "id": 565531, "image": "https://media.rawg.io/media/screenshots/268/2689f04cbcabb467dd4948e30fe90f51.jpg" },
+          { "id": 565532, "image": "https://media.rawg.io/media/screenshots/e83/e83fbaf3a8bdf1cdd855acf8fc90d2fe.jpg" },
+         { "id": 565533, "image": "https://media.rawg.io/media/screenshots/a02/a021bf48ee5e492026e6464b3751cf35.jpg" }
+     ]
+     //this to set which image is clicked
+     const [imgNo, setImgNo] = useState(0);
+     
+     
+     function getScreenShots() {
+         
 
+          setSc(tempSc);
+          fetch(`https://api.rawg.io/api/games/${id}/screenshots?key=${key}`)
+          .then(response => response.json())
+          .then(data => {
+               setSc(data.results);
+               
+             
+             
+          }) 
+
+         
+     }
+     
+    
+     
+  
 
 
 
      
-     function FetchData(){
-          fetch(`https://api.rawg.io/api/games?key=39a9a8f059eb4e2d9df768186807dcf9&search_exact=${id}`)
-          .then(response => response.json())
-          .then(data => {
-          setResults(data.results);
-          result = res[k];
-          })
-     }
+     
      
      
      useEffect(() => {
-          fetch(`https://api.rawg.io/api/games/${id}?key=39a9a8f059eb4e2d9df768186807dcf9`)
+          
+          setLoading(true);
+          
+          fetch(`https://api.rawg.io/api/games/${id}?key=${key}`)
                .then(response => response.json())
                .then(data => {
+          
+                    
                     setDetails(data);
-                    setloading(false);
+                    setLoading(false);
+                  
                   
                })
+               
+          
+          
+               console.log("Requested Details")
+                    
      }, [id])
      
-     
+     if (Object.keys(screenshots).length === 0) {
+          
+          getScreenShots();
+          
+     }
      function render() {
+          
+          
          
-          
-          if (result == undefined) { return}
-          if(result.slug != id) FetchData();
-          
           
           if (loading) { return <Hero text={<LoadingSpinner />} /> }               
           return (
                <>
                     
-                    <Carousel scModal={scMoadal} setScModal={setScModal} photos={result.short_screenshots} setHideNav={setHideNav} />
+                    <Carousel scModal={scMoadal} setScModal={setScModal} photos={screenshots} setHideNav={setHideNav} setImgNo={setImgNo} imgNo={imgNo} />
                     <Hero text={details.name} backdrop={details.background_image} />
 
                     <div className='d-md-flex justify-content-md-between justify-content-center align-items-center flex-md-row flex-column m-3'>
@@ -76,11 +107,13 @@ const Detailed = ({res,setHideNav,setResults}) => {
                     
                           </div>
                          
-                         <ScreenShots photos={result.short_screenshots} ScModal={scMoadal} setScmodal={setScModal} />
+                         <ScreenShots photos={screenshots} ScModal={scMoadal} setScmodal={setScModal} setImgNo={ setImgNo} />
                     </div>
-                    <div dangerouslySetInnerHTML={{ __html: details.description }} className="text-light fs-4 m-3">{}</div>
-                    </>
+                    <div dangerouslySetInnerHTML={{ __html: details.description }} className="text-light fs-4 m-3">{ }</div>
+               </>
+               
           )
+          
      }
 
 

@@ -5,6 +5,7 @@ import Home from './components/Home'
 import About from './components/About'
 import Detailed from './components/Detailed'
 import SearchView from './components/SearchView'
+import PageNotFound from './components/PageNotFound';
 import {Routes,Route} from 'react-router-dom' 
 import { useState, useEffect } from 'react';
 
@@ -20,20 +21,28 @@ function App() {
   const [searchText, setSearchText] = useState([]);
   const [isLoading, setLoading] = useState([]);
   const [hideNav, setHideNav] = useState(false);
-
+  const [screenshots, setSc] = useState({})
+  const key = "53f7c1ee5b2449dc8379de8da8db4d18";
   useEffect(() => {
-    if (searchText != null) {
-      fetch(`https://api.rawg.io/api/games?key=39a9a8f059eb4e2d9df768186807dcf9&search=${searchText}`)
+    
+    
+      console.log("REQUEST MAIN")
+      
+    fetch(`https://api.rawg.io/api/games?key=${key}&search=${searchText}`)
+      
         .then(response => response.json())
         .then(data => {
+          
           setResults(data.results);
           
           setLoading(false);
-          // if (searchResults.length === 0) console.log("empty")
+          console.log(searchResults)
+
+          
           
         })
       
-    }  
+    
   }, [searchText])
 
 
@@ -46,12 +55,19 @@ function App() {
         <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<About />} />
-        <Route path="/search" element={<SearchView keyword={searchText} searchResult={searchResults} loading={ isLoading}/>} />
-        <Route path="/game/:id/:k" element={<Detailed res={searchResults} setHideNav={setHideNav} setResults={ setResults} />}/>
+        <Route path="/search" element={
+        <SearchView keyword={searchText}
+        searchResult={searchResults} loading={isLoading} setLoading={setLoading}
+        setSc={setSc}
+        />} />
+        <Route path="/game/:id" element={<Detailed loading={isLoading} setLoading={setLoading} res={searchResults} setHideNav={setHideNav} setResults={setResults} screenshots={screenshots} setSc={setSc} />} />
+        
+        <Route path='*' element={<PageNotFound/>} />
         </Routes>
       
 
     </div>
+    
   );
 }
 

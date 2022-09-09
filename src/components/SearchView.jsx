@@ -2,9 +2,8 @@ import Hero from './Hero'
 import { Link,useNavigate } from 'react-router-dom'
 import hedthy from '../Resources/HEDTHY.png'
 import LoadingSpinner from './loadingModal';
+import Detailed from './Detailed';
 
-//RAWG key 39a9a8f059eb4e2d9df768186807dcf9
-//example https://api.rawg.io/api/games/minecraft?key=39a9a8f059eb4e2d9df768186807dcf9
 
 function getDate(d) {
      if (d === null) { return <>{"Unknown"}</>  }
@@ -64,15 +63,15 @@ function getPlatforms(p) {
 //game.background_image
 
 
-const Card = ({game,k}) => {
-     const detailsUrl = `/game/${game.slug}/${k}`
+const Card = ({game,setLoading,setSc}) => {
+     const detailsUrl = `/game/${game.slug}`
 
      return (
           <div className='col-lg-3 col-md-4 col-sm-12  my-1'>
                
-               <div className="card bg-white border border-dark rounded-2 h-75">
+               <div className="card bg-white border border-dark h-75">
 
-                    <img src={getImg(game.background_image)}  className="card-img-top card-img"  />
+                    <img src={getImg(game.background_image)}  className="card-img-top card-img "  />
                     <div className="card-body">
                          <h6 className=" card-title-txt card-title">{game.name}</h6>
                          {getPlatforms(game.parent_platforms)}
@@ -92,7 +91,12 @@ const Card = ({game,k}) => {
                          
                          </div>
                          <div className=''>
-                              <Link to={detailsUrl} className="btn btn-dark position-absolute bottom-0 start-0 m-3">Details</Link>
+                              <Link onClick={() => {
+                                   setLoading(true);
+                                   setSc(game.short_screenshots);
+                                   
+                              }}
+                                   to={detailsUrl} className="btn btn-dark position-absolute bottom-0 start-0 m-3">Details</Link>
 
                          </div>
                     </div>
@@ -102,16 +106,20 @@ const Card = ({game,k}) => {
 }
 
 
-const SearchView = ({ keyword, searchResult,loading}) => {
+const SearchView = ({ keyword, searchResult,loading,setLoading,setSc}) => {
      
-     if(loading)return <Hero text={<LoadingSpinner/>}/>
+     if (loading) return <Hero text={<LoadingSpinner />} />
+     
+     
      console.log(searchResult)
      if (keyword.length == 0) { 
         
      }
      
+     
+
      const resultAsHtml = searchResult.map((obj, i) => {
-          return <Card game={obj} key={i} k={i} />
+          return <Card game={obj} key={i} k={i} setLoading={setLoading} setSc={setSc}  />
      })
 
      
@@ -121,13 +129,17 @@ const SearchView = ({ keyword, searchResult,loading}) => {
           <>
 
                <Hero text={`Results for "${keyword}"`} />
+               {searchResult.length === 0 &&
+                    <div className='d-flex justify-content-center my-4'>
+                         <h3 className='text-light'>No Results has been found</h3>
+               </div>
+               }
                {resultAsHtml && 
                 <div className='container'>
                          <div className='row'>
                               {resultAsHtml}
                          </div>
-                    </div>
-}
+                    </div>}
                
           </>
      )
