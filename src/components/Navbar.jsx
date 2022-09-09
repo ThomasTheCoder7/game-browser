@@ -17,7 +17,7 @@ const navbar = ({searchText,setSearchText,setLoading,hideNav}) => {
           event.preventDefault();
           setLoading(true);
           setSearchText(text);
-          Navigate("game-browser/search")
+          Navigate("search")
           
 
           
