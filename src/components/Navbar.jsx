@@ -30,7 +30,7 @@ const navbar = ({searchText,setSearchText,setLoading,hideNav}) => {
           <>
                   <Navbar bg="dark" expand="lg" sticky='top' hidden={hideNav} text={"light"}>
                     <Container fluid>
-                    <Link to="game-browser" className="navbar-brand text-light" >Game Browser</Link>
+                    <Link to="/" className="navbar-brand text-light" >Game Browser</Link>
                     <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
