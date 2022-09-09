@@ -54,13 +54,13 @@ function App() {
         
         <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/about" element={<About />} />
-        <Route path="/search" element={
+        <Route path="game-browser/about" element={<About />} />
+        <Route path="game-browser/search" element={
         <SearchView keyword={searchText}
         searchResult={searchResults} loading={isLoading} setLoading={setLoading}
         setSc={setSc}
         />} />
-        <Route path="/game/:id" element={<Detailed loading={isLoading} setLoading={setLoading} res={searchResults} setHideNav={setHideNav} setResults={setResults} screenshots={screenshots} setSc={setSc} />} />
+        <Route path="game-browser/game/:id" element={<Detailed loading={isLoading} setLoading={setLoading} res={searchResults} setHideNav={setHideNav} setResults={setResults} screenshots={screenshots} setSc={setSc} />} />
         <Route path="/game-browser/" element={<Home/>} />
         <Route path='*' element={<PageNotFound/>} />
         </Routes>
