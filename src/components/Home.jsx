@@ -3,7 +3,7 @@ import Hero from './Hero'
 const Home = () => {
      return (
           <>
-          <Hero text="Welcome to React201"/>
+          <Hero text="Game Browser"/>
           
           </>
      )
